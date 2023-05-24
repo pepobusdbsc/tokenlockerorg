@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #FFFFFF;
+    background-color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.small {
+    font-size: 16px;
+}
+
+.err {
+    color: #fa0707;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C0C0C0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    color: #C0C0C0;
+}
+
+button {
+    background-color: #283747;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #008000;
+}
+
+button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btnmodal {
+    background-color: #000000;
+}
+
+.sbtn {
+    font-size: 12px;
+}
+
+hr {
+    margin: 20px;
+    border: 0;
+    border-top: 1px dashed;
+}
+
+input {
+    text-align: center;
+    font-size: 24px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid;
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0px;
+}
+
+td,
+th {
+    text-align: center;
+    font-size: 14px;
+}
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+.modal-content {
+    background-color: #283747;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* The Close Button for modal */
+
+.close,
+.closealt {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.closealt:hover,
+.closealt:focus {
+    color: #C0C0C0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.tablerow {
+    display: grid;
+    grid-template-columns: 10% 50% 20% 20%;
+    grid-template-areas: 'no address balances status' 'no date balances status';
+    grid-gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid;
+    cursor: pointer;
+}
+
+.tablerow:hover {
+    background-color: #008000;
+}
+
+.no,
+.address,
+.balances,
+.date,
+.status {
+    margin: auto;
+    text-align: center;
+}
+
+.no {
+    grid-area: no;
+}
+
+.address {
+    grid-area: address;
+}
+
+.balances {
+    grid-area: balances;
+}
+
+.date {
+    grid-area: date;
+}
+
+.status {
+    grid-area: status;
+}
+
+.embedcode {
+    text-align: left;
+    font-size: 14px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+@media (max-width: 800px) {
+    .tablerow {
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 'no no' 'address address' 'date date' 'balances status';
+        font-size: 14px;
+    }
+}

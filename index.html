@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Token locker. Liquidity locker. Tokens vesting. LP tokens locking. How to lock team's tokens for a time. Team tokens vesting. Pancakeswap LP tokens lock. Reliable liquidity locking service. Token vesting smart contract.">
+    <link rel="stylesheet" type="text/css" href="css/tokenlock.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Token locker. Liquidity locker. Tokens vesting. LP tokens locking.</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S3YY990H9L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-S3YY990H9L');
+    </script>
+
+</head>
+
+<body>
+
+    <div style="text-align: center">
+        <button class="sbtn" id="addMainBSC">Binance Smart Chain (BSC) Mainnet</button>
+        <button class="sbtn" id="addTestBSC">Binance Smart Chain (BSC) Testnet</button>
+        <button class="sbtn" id="addMainMATIC">Polygon (MATIC) Mainnet</button>
+        <button class="sbtn" id="addTestMATIC">Polygon (MATIC) Testnet</button>
+        <button class="sbtn" id="addMainThunderCore">ThunderCore (TT) Mainnet</button>
+        <!--button class="sbtn" id="addTestThunderCore">ThunderCore (TT) Testnet</button--><br>
+        <p id="nometamask" class="err" style="display: none">Please install Metamask first...</p>
+        <p id="connected" style="color: green; display: none"></p>
+        <button class="sbtn" id="connect">Connect wallet</button>
+        <div class="network small"><span id="curnet"><span class="err">Please use DApp browser/extension (e.g. <a target="_blank" href="https://metamask.io">Metamask</a>)</span></span> <span class="myAddress"></span></div>
+    </div>
+
+    <hr>
+
+    <div style="text-align: center;">
+        <h1>Secure token locker</h1>
+        <h2>Ideal for team's tokens vesting, LP tokens lock, liquidity lock</h2>
+    </div>
+
+    <hr>
+
+    <div id="connection" style="text-align: center; display: none" class="err">
+        <h1>Please connect your wallet</h1>
+        <button id="connect1">Connect</button>
+    </div>
+
+    <div id="wrongnetwork" style="text-align: center; display: none" class="err">
+        <h1>Currently only Binance Smart Chain (BEP20), Polygon (MATIC) and ThunderCore networks are supported (Mainnet and Testnet).</h1>
+    </div>
+
+    <div id="actions" style="display: none;">
+
+        <div style="text-align: center;">
+            <h1>Create a locker contract</h1>
+
+            <div>
+                <h2>Token address:</h2>
+                <input type="text" id="newlockertkn" size="60" required>
+                <div id="tokendata"></div>
+                <p></p>
+            </div>
+
+            <h2>Unlock date (local time):</h2>
+            <input type="datetime-local" id="newlockerdate">
+            <br><span class="small">Set the date and time when your assets will be unlocked. After this time you will be able to withdraw them back to your wallet.</span>
+            <p></p>
+
+            <h2>Cost: <span id="buildercost"></span>&nbsp;<span class="eth">BNB</span></h2>
+            <p id="errors" class="err"></p>
+            <p><button id="buildbtn">Create contract</button></p>
+
+
+        </div>
+        <hr>
+        <div class="mycontracts" style="text-align: center">
+
+            <h1>My locker contracts</h1>
+
+            <div id="mycontr"></div>
+
+        </div>
+        <hr>
+        <div style="text-align: center">
+            <h1>Find locker contracts</h1>
+
+            <h2>By token address</h2>
+            <input type="text" id="findtokenaddr" size="60">
+            <button id="findbytoken">Find by token</button>
+            <div id="bytokenresult"></div>
+            <div id="foundbytoken"></div>
+            <p></p>
+            <h2>By owner address</h2>
+            <input type="text" id="findowneraddr" size="60">
+            <button id="findbyowner">Find by owner</button>
+            <div id="byownerresult"></div>
+            <div id="foundbyowner"></div>
+        </div>
+
+    </div>
+    <!-- =================== END OF ACTIONS ======================= -->
+
+    <!-- Admin -->
+    <div id="admin" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Locker contract <span class="thisAddr"></span></h1>
+            <p>View on blockchain explorer: <span id="viewThis"></span></p>
+            <p></p>
+            <p>Assets owner: <span id="thisOwner"></span><span id="isowner"></span></p>
+            <p class="tokens">Balance (locked assets): <span id="thisLocked"></span></p>
+            <p>Unlock date: <span class="thisDate"></span></p>
+            <hr>
+            <div class="tokeninfo">
+                <p class="tokens">Token address: <span class="thisTokenAddress"></span></p>
+                <p class="tokens">View on blockchain explorer: <span id="viewThisToken"></span></p>
+                <p class="tokens">Token: <span class="thisName"></span> (<span class="thisSymbol"></span>) <button id="addToken" class="btnmodal">Add to wallet</button></p>
+                <hr>
+            </div>
+            <p>Locker status: <span id="thisStatus"></span></p>
+
+            <div class="onlyowner" style="display: none;">
+
+                <p><button id="thisWithdraw" class="btnmodal">Withdraw all</button> <span id="nothing" style="color: red; display: none">Nothing to withdraw</span></p>
+
+                <div id="adminLock">
+                    <hr>
+                    <p>To lock tokens just send them to the contract address</p>
+                    <p><span id="thisAddr" class="thisAddr"></span></p>
+                    <p><button id="copyAddressAdmin" class="btnmodal">Copy address</button></p>
+                    <div style="text-align: center" id="adminqr"></div>
+                    <!--p style="text-align: center"><a style="text-decoration: none" id="admind" href="" download>Download QR</a></p-->
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div style="text-align: center">
+
+                <h1>Locker page</h1>
+
+                <h2>This page shows the token locker status.</h2>
+                <p>Just use this link:</p>
+                <p><a href="" target="_blank" id="uiAddr"></a></p> <button id="copyUIlink" class="btnmodal">Copy</button>
+
+            </div>
+
+
+
+            <div class="onlyowner" style="display: none; text-align: center">
+                <hr>
+                <h1>Your own locker UI</h1>
+
+                <p>You can download front-end HTML file and edit the file after downloading, or order some design on top of it.<br> Please keep the scripts, IDs and classes otherwise some important functions may not work properly.</p>
+                <p>Just upload index.html file to your website - and your assets lock information will be there!</p>
+                <p>You can also copy the HTML code to clipboard.</p>
+                <p><button class="btnmodal" onclick="download('index.html','htmlpage')">Download HTML file</button>
+                    <button class="btnmodal" onclick="copyToClipboard('#htmlpage')">Copy HTML code</button>
+                    <button class="btnmodal" onclick="$('#htmlpage').toggle()">Show/hide HTML</button></p>
+
+                <div id="htmlpage" class="embedcode" style="display: none">
+                    &lt;!DOCTYPE html&gt;<br> &lt;html &gt;<br> &lt;head&gt;
+                    <br> &lt;meta charset="UTF-8"&gt;<br> &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;<br> &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br> &lt;meta name="description" content="Token locker
+                    / Liquidity locker"&gt;<br>
+                    <br> &lt;title&gt;Token locker. Liquidity locker.&lt;/title&gt;<br>
+                    <br> &lt;script&gt;
+                    <br> var usenet = <span id="netid"></span>;<br> var contractAddress = '<span class="thisAddr"></span>';<br> &lt;/script&gt;
+                    <br>
+                    <br> &lt;style&gt;
+                    <br> body {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #FFFFFF; background-color: #000000; font-size: 16px; font-weight: 400;}<br> h1 { font-size: 26px; font-weight: 700;}<br> h2 { font-size: 24px; font-weight:
+                    500;}<br> .small {font-size: 14px;}<br> .err {color: #fa0707;}<br> * {box-sizing: border-box;}<br> a {color: #FFFFFF; text-decoration: none;}<br> a:hover {color: #C0C0C0;}<br> .clickable {cursor: pointer;}<br> .clickable:hover {color:
+                    #C0C0C0;}<br> button {background-color: #283747; border: none; border-radius: 2px; color: white; padding: 5px 20px; text-align: center; text-decoration: none; font-size: 16px; display: inline-block; margin: 4px 2px; cursor: pointer;}<br>                    button:hover {background-color: #008000;}<br> button[disabled] {opacity: 0.6; cursor: not-allowed;}<br> hr {margin: 20px; border: 0; border-top: 1px dashed;}<br> &lt;/style&gt;
+                    <br>
+                    <br> &lt;/head&gt;
+                    <br>
+                    <br> &lt;body&gt;
+                    <br>
+                    <br> &lt;div style="text-align: center"&gt;<br> &lt;div class="network small"&gt;&lt;span id="curnet"&gt;&lt;span class="err"&gt;Please use DApp browser/extension (e.g. &lt;a target="_blank" href="https://metamask.io"&gt;Metamask&lt;/a&gt;)&lt;/span&gt;&lt;/span&gt;
+                    &lt;span id="myAddr"&gt;&lt;/span&gt;&lt;/div&gt;<br> &lt;/div&gt;
+                    <br>
+                    <br> &lt;div id="locker" style="text-align: center;"&gt;<br>
+                    <br> &lt;h1&gt;Locker&lt;/h1&gt;
+                    <br> &lt;h2&gt;&lt;a title="View on explorer" target="_blank" href="<span id="thisLockerHref"></span>" id="addressLocker"&gt;<span class="thisAddr"></span>&lt;/a&gt;&lt;/h2&gt;<br> &lt;p&gt;&lt;/p&gt;
+                    <br> &lt;h2&gt;Balance (locked assets):&lt;/h2&gt;<br> &lt;h1&gt;&lt;span id="balance"&gt;&lt;/span&gt;&lt;/h1&gt;<br> &lt;p&gt;&lt;/p&gt;
+                    <br> &lt;h2&gt;Unlock date:&lt;/h2&gt;<br> &lt;h2&gt;&lt;span id="date"&gt;<span class="thisDate"></span>&lt;/span&gt;&lt;/h2&gt;<br> &lt;h2&gt;&lt;span id="status"&gt;&lt;/span&gt;&lt;/h2&gt;<br> &lt;p&gt;&lt;/p&gt;
+                    <br>
+                    <br> &lt;hr&gt;
+                    <br> &lt;h2&gt;Token: &lt;span id="name"&gt;<span class="thisName"></span>&lt;/span&gt; (&lt;span class="symbol"&gt;<span class="thisSymbol"></span>&lt;/span&gt;) &lt;button id="addToken"&gt;Add to wallet&lt;/button&gt;&lt;/h2&gt;<br>                    &lt;h2&gt;Token address: &lt;a title="View on explorer" target="_blank" href="<span id="thisTokenHref"></span>" id="addressToken"&gt;<span class="thisTokenAddress"></span>&lt;/a&gt;&lt;/h2&gt;<br>
+                    <br>
+                    <br> &lt;/div&gt;
+                    <br>
+                    <br> &lt;div id="admin" style="text-align: center; display: none"&gt;<br> &lt;hr&gt;
+                    <br> &lt;h2&gt;Admin area&lt;/h2&gt;<br> &lt;p&gt;You see this because you are the owner of the assets.&lt;br&gt;<br> When the lock time expires you will be able to withdraw assets back to your wallet.&lt;/p&gt;<br> &lt;p&gt;&lt;span
+                    id="nothing" style="color: red; display: none"&gt;Nothing to withdraw&lt;/span&gt;&lt;/p&gt;<br> &lt;p&gt;&lt;button id="withdraw"&gt;Withdraw&lt;/button&gt;&lt;/p&gt;<br> &lt;div id="adminLock"&gt;<br> &lt;hr&gt;
+                    <br> &lt;p&gt;To lock assets just send them to the contract address&lt;br&gt;<br> &lt;span id="adminContract"&gt;&lt;/span&gt;&lt;br&gt;<br> &lt;button id="copyAddressAdmin"&gt;Copy address&lt;/button&gt;&lt;/p&gt;<br> &lt;div style="text-align:
+                    center" id="adminqr"&gt;&lt;/div&gt;<br> &lt;!--p style="text-align: center"&gt;&lt;a style="text-decoration: none" id="admind" href="" download&gt;Download QR&lt;/a&gt;&lt;/p--&gt;<br> &lt;/div&gt;
+                    <br> &lt;/div&gt;
+                    <br>
+                    <br> &lt;script src='https://tokenlock.org/js/jquery-3.6.0.min.js' type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;<br> &lt;script src='https://tokenlock.org/js/ethers-5.2.umd.min.js' type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;<br>                    &lt;script src='https://tokenlock.org/js/tokenlock.ui.js' type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;<br>
+                    <br> &lt;/body&gt;
+                    <br> &lt;/html&gt;
+                    <br>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src='js/jquery-3.6.0.min.js' type="text/javascript" charset="utf-8"></script>
+    <script src='js/ethers-5.2.umd.min.js' type="text/javascript" charset="utf-8"></script>
+    <script src='js/tokenlock.js' type="text/javascript" charset="utf-8"></script>
+    <script src='js/addnet.js' type="text/javascript" charset="utf-8"></script>
+
+</body>
+
+</html>
